@@ -12,7 +12,7 @@ import math
 from collections import deque
 from pathlib import Path
 
-GRAPH_PATH = Path("D:/Projects/lifeline/backend/data/city_graph.json")
+GRAPH_PATH = Path(__file__).resolve().parent.parent / "backend" / "data" / "city_graph.json"
 INF = float("inf")
 
 city = json.loads(GRAPH_PATH.read_text())
