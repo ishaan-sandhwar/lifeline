@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="150" viewBox="0 0 1280 150" role="img" aria-label="Key numbers: 40 / 83 locations and roads in Indrapur; 96 automated checks, 5 suites; 35 → 10 nodes settled, Dijkstra vs A*; 25,200 people per hour out of a 1-ring flood; 10+ algorithms behind the REST API">
+<rect x="0.0" y="0" width="243.2" height="150" rx="14" fill="#0f172a"/>
+<rect x="0.5" y=".5" width="242.2" height="149" rx="13.5" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
+<rect x="22.0" y="0" width="199.2" height="4" rx="2" fill="#38bdf8"/>
+<text x="121.6" y="78" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="30" font-weight="800" fill="#ffffff">40 / 83</text>
+<text x="121.6" y="110" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="15.5" fill="#a8b3c4">locations and</text>
+<text x="121.6" y="131" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="15.5" fill="#a8b3c4">roads in Indrapur</text>
+<rect x="259.2" y="0" width="243.2" height="150" rx="14" fill="#0f172a"/>
+<rect x="259.7" y=".5" width="242.2" height="149" rx="13.5" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
+<rect x="281.2" y="0" width="199.2" height="4" rx="2" fill="#a78bfa"/>
+<text x="380.8" y="78" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="42" font-weight="800" fill="#ffffff">96</text>
+<text x="380.8" y="110" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="15.5" fill="#a8b3c4">automated checks, 5 suites</text>
+<rect x="518.4" y="0" width="243.2" height="150" rx="14" fill="#0f172a"/>
+<rect x="518.9" y=".5" width="242.2" height="149" rx="13.5" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
+<rect x="540.4" y="0" width="199.2" height="4" rx="2" fill="#34d399"/>
+<text x="640.0" y="78" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="30" font-weight="800" fill="#ffffff">35 → 10</text>
+<text x="640.0" y="110" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="15.5" fill="#a8b3c4">nodes settled,</text>
+<text x="640.0" y="131" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="15.5" fill="#a8b3c4">Dijkstra vs A*</text>
+<rect x="777.6" y="0" width="243.2" height="150" rx="14" fill="#0f172a"/>
+<rect x="778.1" y=".5" width="242.2" height="149" rx="13.5" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
+<rect x="799.6" y="0" width="199.2" height="4" rx="2" fill="#f59e0b"/>
+<text x="899.2" y="78" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="42" font-weight="800" fill="#ffffff">25,200</text>
+<text x="899.2" y="110" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="15.5" fill="#a8b3c4">people per hour out</text>
+<text x="899.2" y="131" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="15.5" fill="#a8b3c4">of a 1-ring flood</text>
+<rect x="1036.8" y="0" width="243.2" height="150" rx="14" fill="#0f172a"/>
+<rect x="1037.3" y=".5" width="242.2" height="149" rx="13.5" fill="none" stroke="#ffffff" stroke-opacity="0.09"/>
+<rect x="1058.8" y="0" width="199.2" height="4" rx="2" fill="#f472b6"/>
+<text x="1158.4" y="78" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="42" font-weight="800" fill="#ffffff">10+</text>
+<text x="1158.4" y="110" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="15.5" fill="#a8b3c4">algorithms behind</text>
+<text x="1158.4" y="131" text-anchor="middle" font-family='"Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif' font-size="15.5" fill="#a8b3c4">the REST API</text>
+</svg>
