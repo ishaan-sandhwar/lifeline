@@ -1,107 +1,57 @@
-# 🚨 LifeLine — Smart City Disaster Response & Evacuation Simulator
+<p align="center">
+  <img src="docs/banner.svg" alt="LifeLine: smart city disaster response and evacuation simulator" width="100%">
+</p>
+
+<div align="center">
 
 ![C++17](https://img.shields.io/badge/C%2B%2B-17-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
 ![React](https://img.shields.io/badge/React-Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![License](https://img.shields.io/badge/License-MIT-3fb950?style=for-the-badge)
 [![Live demo](https://img.shields.io/badge/Live_demo-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)](https://lifeline-31iq.onrender.com)
 
-A DSA-driven full-stack project: a fictional city (**Indrapur**, 40 locations, 83 roads) modelled as a weighted graph, with a C++ engine that routes emergency vehicles, simulates disasters, computes evacuation capacity with max-flow, dispatches rescue units, and analyses network resilience — all on data structures and algorithms written from scratch.
+**A DSA-driven full-stack project: a fictional city of 40 locations and 83 roads, modelled as a weighted graph, with a C++ engine that routes emergency vehicles, simulates disasters, computes evacuation capacity with max-flow, dispatches rescue units and analyses network resilience.**<br>
+Built by a five-member team for the DSA course at Lovely Professional University.
 
-**🌐 Live demo:** <https://lifeline-31iq.onrender.com> — free-tier Render instance, first load may take ~1 minute to cold-start.
-**📄 Project report:** [docs/report_final.pdf](docs/report_final.pdf) · **🎞️ Slides:** [docs/LifeLine_Presentation.pptx](docs/LifeLine_Presentation.pptx)
+[🌐 Live demo](https://lifeline-31iq.onrender.com) · [🎬 Feature tour](#-feature-tour) · [🧩 How it works](#-how-it-works) · [🚀 Quick start](#-quick-start) · [🧪 Testing](#-testing) · [📄 Report](docs/report_final.pdf) · [🎞️ Slides](docs/LifeLine_Presentation.pptx)
+
+</div>
 
 <p align="center">
-  <img src="docs/screenshots/ui_evacuation.png" alt="One-ring flood at River Bridge South: rerouted path, blocked roads and min-cut evacuation bottlenecks" width="100%">
+  <img src="docs/stats.svg" alt="40 locations and 83 roads, 96 automated checks, Dijkstra settles 35 nodes against 10 for A*, 25,200 people per hour evacuated in a one-ring flood, more than 10 algorithms behind the REST API" width="100%">
 </p>
 
-## ✨ Highlights
+<p align="center">
+  <img src="docs/screenshots/ui_evacuation.png" alt="One-ring flood at River Bridge South: rerouted path, blocked roads and min-cut evacuation bottlenecks" width="100%"><br>
+  <sub>A one-ring flood at River Bridge South: the engine reroutes around blocked roads and finds the evacuation bottlenecks.</sub>
+</p>
 
-- 🧱 **Hand-written data structures instead of the STL's** — binary min-heap and max-heap, separate-chaining hash map (djb2) and trie in `backend/src/ds/`, plus Union-Find in `backend/src/resilience/`. No `std::priority_queue` or `std::unordered_map` in the algorithms (`std::vector` is used for plain storage).
-- 🧭 **10+ classic algorithms behind the REST API** — Dijkstra, A*, Bellman-Ford, Floyd-Warshall, Edmonds-Karp max-flow + min-cut, BFS disaster spread, Tarjan bridges/articulation points, Prim & Kruskal MST, 0/1 knapsack DP, greedy dispatch.
-- 📦 **Zero-dependency C++17 backend** — one self-contained binary serves both the REST API and the built React frontend. The only third-party code is two vendored header-only libraries: cpp-httplib and nlohmann/json.
-- 🗺️ **React (Vite) command center** — interactive dark map with live disaster zones, reroutes, dispatch paths, and network analytics.
-- ✅ **96 automated checks across 5 test suites**, compared against hand-checked examples and an independent Python verifier (see [Testing](#-testing)).
+> [!NOTE]
+> The live demo runs on a free-tier Render instance, so the first load can take about a minute to cold-start.
 
-## 📂 Repo layout
+## ✨ What makes it different
 
-```
-lifeline/
-├── backend/
-│   ├── include/            httplib.h, json.hpp (third-party, header-only)
-│   ├── src/
-│   │   ├── core/           graph.h/.cpp, city_loader (frozen interface)
-│   │   ├── ds/             min_heap, max_heap, hash_map, trie (all custom)
-│   │   ├── routing/        dijkstra (+dijkstraAll), astar,
-│   │   │                   bellman_ford, floyd_warshall
-│   │   ├── evacuation/     Edmonds-Karp max flow + min cut
-│   │   ├── dispatch/       triage + greedy dispatch, knapsack supplies
-│   │   ├── resilience/     UnionFind, Tarjan, Prim + Kruskal
-│   │   ├── simulation/     BFS disaster spread
-│   │   ├── db/             history (SQLite optional, JSONL fallback)
-│   │   ├── api/            REST server (cpp-httplib)
-│   │   └── main.cpp        server mode + console mode
-│   ├── data/city_graph.json
-│   ├── tests/              5 suites, 96 checks
-│   └── Makefile            `make`, `make USE_SQLITE=1`, `make test`
-├── frontend-react/         React (Vite) command center
-│   └── dist/               prebuilt — served by ./lifeline at /
-├── frontend/map.html       zero-build fallback UI
-├── docs/                   API spec, report (PDF), slides, screenshots
-└── tools/
-    ├── generate_city.py    regenerates city_graph.json (keeps A* admissible)
-    └── verify_city.py      independent Python ground truth for the tests
-```
-
-## 🚀 Build & run — Linux / macOS / WSL
-
-```
-git clone https://github.com/ishaan-sandhwar/lifeline.git
-cd lifeline/backend
-make            # builds ./lifeline (zero external dependencies)
-./lifeline      # REST server on http://localhost:8080
-```
-
-Open **<http://localhost:8080>** — the demo map loads automatically.
-
-- Optional SQLite history: `make USE_SQLITE=1` (needs `libsqlite3-dev`); the default build logs to a JSONL file instead.
-- Console mode (no browser needed): `./lifeline console`
-- Custom port: `./lifeline 9090`
-- Unit tests: `make test`
-
-## 🪟 Build & run — Windows (native, MSYS2)
-
-1. Install MSYS2 from <https://www.msys2.org> (one-time).
-2. Open the **"MSYS2 UCRT64"** shell and install the toolchain:
-
-```
-pacman -S --needed mingw-w64-ucrt-x86_64-gcc make git
-```
-
-3. Clone, build, run (the Makefile auto-adds `-lws2_32` on Windows):
-
-```
-git clone https://github.com/ishaan-sandhwar/lifeline.git
-cd lifeline/backend
-make
-./lifeline.exe
-```
-
-Prefer WSL? `wsl --install`, then follow the Linux steps above.
-
-## ⚛️ Frontend (React)
-
-A built `dist/` ships in the repo and is served by the C++ binary itself, so Node is **not** needed at runtime. To rebuild or develop:
-
-```
-cd frontend-react
-npm install
-npm run build        # -> dist/, which ./lifeline auto-serves at /
-npm run dev          # hot reload: Vite on :5173, /api proxied to :8080
-```
-
-`frontend/map.html` remains as a zero-build fallback UI.
-
----
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>🧱 Written from scratch</h4>
+      Binary heaps, a djb2 hash map, a trie and Union-Find are hand-written instead of the STL's. No <code>std::priority_queue</code> or <code>std::unordered_map</code> in the algorithms; <code>std::vector</code> is plain storage.
+    </td>
+    <td width="50%" valign="top">
+      <h4>🧭 10+ algorithms, one engine</h4>
+      Dijkstra, A*, Bellman-Ford, Floyd-Warshall, Edmonds-Karp, BFS spread, Tarjan, Prim and Kruskal, knapsack DP and greedy dispatch, all behind the REST API.
+    </td>
+  </tr>
+  <tr>
+    <td valign="top">
+      <h4>📦 One self-contained binary</h4>
+      A zero-dependency C++17 backend serves the REST API and the built React app. The only third-party code is two vendored headers: cpp-httplib and nlohmann/json.
+    </td>
+    <td valign="top">
+      <h4>✅ Checked against something</h4>
+      96 automated checks across 5 suites, compared against hand-checked examples and an independent Python verifier (see <a href="#-testing">Testing</a>).
+    </td>
+  </tr>
+</table>
 
 ## 🎬 Feature tour
 
@@ -157,9 +107,122 @@ Route **Riverside Colony → Sunrise Hospital** with algorithm **Compare**: both
   </tr>
 </table>
 
----
+## 🧩 How it works
 
-## 🤔 Design decisions (FAQ)
+<p align="center">
+  <img src="docs/architecture.svg" alt="LifeLine architecture: the Indrapur city graph feeds a C++17 engine with core graph, data structures, routing and evacuation; response and resilience modules; a REST API; and a React command center" width="100%">
+</p>
+
+## 🚀 Quick start
+
+```
+git clone https://github.com/ishaan-sandhwar/lifeline.git
+cd lifeline/backend
+make            # builds ./lifeline (zero external dependencies)
+./lifeline      # REST server on http://localhost:8080
+```
+
+Open **<http://localhost:8080>** — the demo map loads automatically.
+
+- Optional SQLite history: `make USE_SQLITE=1` (needs `libsqlite3-dev`); the default build logs to a JSONL file instead.
+- Console mode (no browser needed): `./lifeline console`
+- Custom port: `./lifeline 9090`
+- Unit tests: `make test`
+
+<details>
+<summary><b>🪟 Windows (native, MSYS2)</b></summary>
+
+1. Install MSYS2 from <https://www.msys2.org> (one-time).
+2. Open the **"MSYS2 UCRT64"** shell and install the toolchain:
+
+```
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc make git
+```
+
+3. Clone, build, run (the Makefile auto-adds `-lws2_32` on Windows):
+
+```
+git clone https://github.com/ishaan-sandhwar/lifeline.git
+cd lifeline/backend
+make
+./lifeline.exe
+```
+
+Prefer WSL? `wsl --install`, then follow the Linux steps above.
+
+</details>
+
+<details>
+<summary><b>⚛️ Frontend (React)</b></summary>
+
+A built `dist/` ships in the repo and is served by the C++ binary itself, so Node is **not** needed at runtime. To rebuild or develop:
+
+```
+cd frontend-react
+npm install
+npm run build        # -> dist/, which ./lifeline auto-serves at /
+npm run dev          # hot reload: Vite on :5173, /api proxied to :8080
+```
+
+`frontend/map.html` remains as a zero-build fallback UI.
+
+</details>
+
+## 🧪 Testing
+
+```
+cd backend
+make test
+```
+
+5 suites (`routing`, `evacuation`, `dispatch`, `resilience`, `analytics`), **96 checks**, run on the real Indrapur graph and on small hand-built graphs with known answers. What the results are compared against:
+
+| Check | Compared against |
+| --- | --- |
+| A* distances | Dijkstra on sampled city pairs (optimality) |
+| Bellman-Ford and Floyd-Warshall | Dijkstra on all 1,600 city pairs, also during a disaster |
+| Max-flow and min-cut | Hand-checked flow networks and the max-flow = min-cut theorem |
+| Bridges, articulation points, MST totals, diameter, centrality | An independent pure-Python verifier, `tools/verify_city.py`; the healthy-city bridge, articulation-point and MST numbers were also checked against networkx |
+
+To print the verifier's ground truth yourself: `python3 tools/verify_city.py`.
+
+## 📚 Reference
+
+<details>
+<summary><b>📂 Repo layout</b></summary>
+
+```
+lifeline/
+├── backend/
+│   ├── include/            httplib.h, json.hpp (third-party, header-only)
+│   ├── src/
+│   │   ├── core/           graph.h/.cpp, city_loader (frozen interface)
+│   │   ├── ds/             min_heap, max_heap, hash_map, trie (all custom)
+│   │   ├── routing/        dijkstra (+dijkstraAll), astar,
+│   │   │                   bellman_ford, floyd_warshall
+│   │   ├── evacuation/     Edmonds-Karp max flow + min cut
+│   │   ├── dispatch/       triage + greedy dispatch, knapsack supplies
+│   │   ├── resilience/     UnionFind, Tarjan, Prim + Kruskal
+│   │   ├── simulation/     BFS disaster spread
+│   │   ├── db/             history (SQLite optional, JSONL fallback)
+│   │   ├── api/            REST server (cpp-httplib)
+│   │   └── main.cpp        server mode + console mode
+│   ├── data/city_graph.json
+│   ├── tests/              5 suites, 96 checks
+│   └── Makefile            `make`, `make USE_SQLITE=1`, `make test`
+├── frontend-react/         React (Vite) command center
+│   └── dist/               prebuilt — served by ./lifeline at /
+├── frontend/map.html       zero-build fallback UI
+├── docs/                   API spec, report (PDF), slides, screenshots
+└── tools/
+    ├── generate_city.py    regenerates city_graph.json (keeps A* admissible)
+    └── verify_city.py      independent Python ground truth for the tests
+```
+
+</details>
+
+<details>
+<summary><b>🤔 Design decisions (FAQ)</b></summary>
 
 **Why is the A\* heuristic admissible?** Every road length ≥ straight-line distance — enforced by `tools/generate_city.py` — so h never overestimates. Admissible + consistent ⇒ A* explores fewer nodes yet returns the same optimal distance.
 
@@ -193,33 +256,18 @@ Route **Riverside Colony → Sunrise Hospital** with algorithm **Compare**: both
 
 **Trie vs hash map for autocomplete?** Prefix queries in O(L) — a hash map can't enumerate "everything starting with riv" without a full scan.
 
----
+</details>
 
-## 🧪 Testing
-
-```
-cd backend
-make test
-```
-
-5 suites (`routing`, `evacuation`, `dispatch`, `resilience`, `analytics`), **96 checks**, run on the real Indrapur graph and on small hand-built graphs with known answers. What the results are compared against:
-
-| Check | Compared against |
-| --- | --- |
-| A* distances | Dijkstra on sampled city pairs (optimality) |
-| Bellman-Ford and Floyd-Warshall | Dijkstra on all 1,600 city pairs, also during a disaster |
-| Max-flow and min-cut | Hand-checked flow networks and the max-flow = min-cut theorem |
-| Bridges, articulation points, MST totals, diameter, centrality | An independent pure-Python verifier, `tools/verify_city.py`; the healthy-city bridge, articulation-point and MST numbers were also checked against networkx |
-
-To print the verifier's ground truth yourself: `python3 tools/verify_city.py`.
-
-## 🗺️ Project phases
+<details>
+<summary><b>🗺️ Project phases</b></summary>
 
 - [x] **P1 Routing** — graph core, Dijkstra, A*, REST, demo map
 - [x] **P2 Evacuation** — disaster spread (BFS), live road blocking, Edmonds-Karp max flow, min-cut bottlenecks
 - [x] **P3 Dispatch** — custom max-heap triage, one-Dijkstra-per-incident greedy assignment, 0/1 knapsack supply loading, persistent history (SQLite via `make USE_SQLITE=1`, zero-dependency JSONL otherwise)
 - [x] **P4 Resilience** — Union-Find (path halving + rank), Tarjan bridges/articulation points, Prim + Kruskal MST (heap-sorted, totals cross-checked), Trie autocomplete
 - [x] **P5 Frontend + Integration** — React (Vite) command center served by the C++ backend, Bellman-Ford + Floyd-Warshall algorithm lab, city analytics
+
+</details>
 
 ## 👥 Team
 
